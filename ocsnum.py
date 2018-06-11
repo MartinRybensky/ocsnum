@@ -518,7 +518,91 @@ def stovka_na_cyr(vstup):
 
 
 	return stovka
+def jednotka_na_hlah(vstup):
+        radjednotek = vstup
+        jednotka = ""
 
+        if radjednotek == 1:
+                jednotka = "ⰰ"
+        elif radjednotek == 2:
+                jednotka = "ⰱ"
+        elif radjednotek == 3:
+                jednotka = "ⰲ"
+        elif radjednotek == 4:
+                jednotka = "ⰳ"
+        elif radjednotek == 5:
+                jednotka = "ⰴ"
+        elif radjednotek == 6:
+                jednotka = "ⰵ"
+        elif radjednotek == 7:
+                jednotka = "ⰶ"
+        elif radjednotek == 8:
+                jednotka = "ⰷ"
+        elif radjednotek == 9:
+                jednotka = "ⰸ"
+
+        return jednotka
+
+
+def desitka_na_hlah(vstup):
+
+        desitka = ""
+        try:
+                raddesitek = int(str(vstup)[-2])
+        except:
+                raddesitek = 0
+
+
+        if raddesitek == 1:
+                desitka = "ⰹ"
+        elif raddesitek == 2:
+                desitka = "ⰻ"
+        elif raddesitek == 3:
+                desitka = "ⰼ"
+        elif raddesitek == 4:
+                desitka = "ⰽ"
+        elif raddesitek == 5:
+                desitka = "ⰾ"
+        elif raddesitek == 6:
+                desitka = "ⰿ"
+        elif raddesitek == 7:
+                desitka = "ⱀ"
+        elif raddesitek == 8:
+                desitka = "ⱁ"
+        elif raddesitek == 9:
+                desitka = "ⱂ"
+
+        return desitka
+
+def stovka_na_hlah(vstup):
+
+        stovka = ""
+        try:
+                radstovek = int(str(vstup)[-3])
+        except:
+                radstovek = 0
+
+
+        if radstovek == 1:
+                stovka = "ⱃ"
+        elif radstovek == 2:
+                stovka = "ⱄ"
+        elif radstovek == 3:
+                stovka = "ⱅ"
+        elif radstovek == 4:
+                stovka = "ⱆ"
+        elif radstovek == 5:
+                stovka = "ⱇ"
+        elif radstovek == 6:
+                stovka = "ⱈ"
+        elif radstovek == 7:
+                stovka = "ⱉ"
+        elif radstovek == 8:
+                stovka = "ⱋ"
+        elif radstovek == 9:
+                stovka = "ⱌ"
+
+	return stovka
 
 '''
 -------------------------------- SAMOTNY PROGRAM -------------------------------------
@@ -539,7 +623,7 @@ print ""
 if user_input < 10000:
 	print "  Cyrillic numeral:    "+str(prevodcisla(user_input,"cyrilice"))
 if user_input < 6000:
-	print "  Glagolitic numeral:  "
+	print "  Glagolitic numeral:  "+str(prevodcisla(user_input,"hlaholice"))
 
 print "  Old Church Slavonic: "+vystup
 print ""
