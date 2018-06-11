@@ -84,27 +84,6 @@ def radstamilionu(vstup):
         else:
                 return True
 
-
-
-
-
-'''
-/**********************************************************************************
- * 
- *  Definice funkcí převádějících čísla na slovní vyjádření ve staroslověnštině
- * 
- *  Základem je funkce cislo_na_slovo(), ze které jsou všechny ostatní funkce 
- *  na základě řádu zadaného čísla volány.
- * 
- *  Testování nenulové hodnoty každého řádu je voláno kvůli vyhodnocení, zda
- *  má být za slovním vyjádřením aktuálně vypsaného řádu tečka či и
- * 
- **********************************************************************************/
-'''
-
-
-
-
 def jednotka_na_slovo(vstup): 
 	
 	vystup = ''
@@ -320,6 +299,227 @@ def tisicovka_na_slovo(vstup):
 
 
 
+
+
+def prevodcisla(vstup,pismo):
+	
+	stscislovka = ""
+
+	if pismo == "hlaholice":
+                jednotka = jednotka_na_hlah(int(str(vstup)[-1]))
+                desitka = desitka_na_hlah(vstup)
+                stovka = stovka_na_hlah(vstup)
+     
+
+
+	elif pismo == "cyrilice":
+		jednotka = jednotka_na_cyr(int(str(vstup)[-1]))
+		desitka = desitka_na_cyr(vstup)
+		#stovka = stovka_na_cyr(vstup)			
+
+	'''
+		ROZSAH 1 - 99
+
+	'''
+        # pokud je zadané číslo menší nebo rovno 10
+        if vstup <= 10:
+                if pismo == "hlaholice":
+                        jednotka = jednotka_na_hlah(vstup)
+                elif pismo == "cyrilice":
+                        jednotka = jednotka_na_cyr(vstup)
+                
+                stscislovka = jednotka
+
+        # pokud je zadané číslo větší než 10 a zároveň menší než 20    
+        elif vstup < 20:
+                if pismo == "hlaholice":
+                        jednotka = jednotka_na_hlah(int(str(vstup)[-1]))
+                        desitka = "ⰹ" # rovnou se doplní 10                    
+                elif pismo == "cyrilice":
+                        jednotka = jednotka_na_cyr(int(str(vstup)[-1]))
+                        desitka = "і"; # rovnou se doplní 10
+                
+                stscislovka = jednotka+desitka
+
+        # pokud je zadané číslo větší nebo rovno 20 a zároveň menší než 100
+        elif vstup < 100:
+                if pismo == "hlaholice":
+                        desitka = desitka_na_hlah(vstup) # písmenko odpovídajícím desítce je nutno nejprve zjistit funkcí
+                        jednotka = jednotka_na_hlah(int(str(vstup)[-1]))
+                elif pismo == "cyrilice":
+                        desitka = desitka_na_cyr(vstup) # písmenko odpovídajícím desítce je nutno nejprve zjistit funkcí
+                        jednotka = jednotka_na_cyr(int(str(vstup)[-1]))
+                
+                # pokud je v řádu jednotek nula
+                if radjednotek(vstup) == False:
+                        stscislovka = desitka
+
+                # pokud není   
+                else:
+                        stscislovka = desitka+jednotka
+                
+	# pokud je zadané číslo větší nebo rovno 100 a zároveň menší než 1000	
+	elif vstup < 1000:
+		if pismo == "hlaholice":
+			jednotka = jednotka_na_hlah(int(str(vstup)[-1]))
+			desitka = desitka_na_hlah(vstup)
+			stovka = stovka_na_hlah(vstup)
+		elif pismo == "cyrilice":
+			jednotka = jednotka_na_cyr(int(str(vstup)[-1]))
+			desitka = desitka_na_cyr(vstup)
+			stovka = stovka_na_cyr(vstup)															
+				
+		if int(str(vstup)[-2]) == 1:  # pokud je v řádu desítek 1 (u -náct je jiný systém než u následujících desítek)
+				
+			if pismo == "hlaholice":
+				desitka = "ⰹ" # rovnou se doplní 10
+			elif pismo == "cyrilice":
+				desitka == "і" # rovnou se doplní 10
+		
+			stscislovka = stovka+jednotka+desitka
+					
+		else: # všechny ostatní desítky
+			
+			stscislovka = stovka+desitka+jednotka
+
+	elif vstup < 10000:
+		carka = "҂"
+
+                if pismo == "hlaholice":
+                        jednotka = jednotka_na_hlah(int(str(vstup)[-1]))
+                        desitka = desitka_na_hlah(vstup)
+                        stovka = stovka_na_hlah(vstup)
+                        # hack kvůli tisícům v hlaholici, protože mají vyhrazený vlastní znak
+                        if(int(str(vstup)[-4])) == 1:
+                                tisicovka = "ⱍ"
+                                carka = ""
+                        elif(int(str(vstup)[-4])) == 2:
+                                tisicovka = "ⱎ"
+                                carka = ""
+                        elif(int(str(vstup)[-4])) == 3:
+                                tisicovka = "ⱏ"
+                                carka = ""
+                        elif(int(str(vstup)[-4])) == 4:
+                                tisicovka = "ⱑ"
+                                carka = ""
+                        elif(int(str(vstup)[-4])) == 5:
+                                tisicovka = "ⱓ"
+                                carka = ""
+                        else:
+                                tisicovka = jednotka_na_hlah(int(str(vstup)[-4]))
+                        
+                elif pismo == "cyrilice":
+                        jednotka = jednotka_na_cyr(int(str(vstup)[-1]))
+                        desitka = desitka_na_cyr(vstup)
+                        stovka = stovka_na_cyr(vstup)
+                        tisicovka = jednotka_na_cyr(int(str(vstup)[-4]))
+                
+		if int(str(vstup)[-2]) == 1:  # pokud je v řádu desítek 1 (u -náct je jiný systém než u následujících desítek)
+
+        		if pismo == "hlaholice":
+                		desitka = "ⰹ" # rovnou se doplní 10
+                	elif pismo == "cyrilice":
+                		desitka = "і" # rovnou se doplní 10
+                                        
+
+                	stscislovka = carka+tisicovka+stovka+jednotka+desitka
+
+		else: # u všech ostatních desítek normálně  
+
+			stscislovka = carka+tisicovka+stovka+desitka+jednotka
+                
+                                                                                                                                                       
+
+	return stscislovka
+
+def jednotka_na_cyr(vstup): 
+	radjednotek = vstup
+	jednotka = ""
+
+	if radjednotek == 1:
+		jednotka = "а"
+	elif radjednotek == 2:
+		jednotka = "в"
+        elif radjednotek == 3:
+                jednotka = "г"
+        elif radjednotek == 4:
+                jednotka = "д"
+        elif radjednotek == 5:
+                jednotka = "е"
+        elif radjednotek == 6:
+                jednotka = "ѕ"
+        elif radjednotek == 7:
+                jednotka = "з"
+        elif radjednotek == 8:
+                jednotka = "и"
+        elif radjednotek == 9:
+                jednotka = "ѳ"
+
+        return jednotka
+
+
+def desitka_na_cyr(vstup):
+
+	desitka = ""
+	try:
+		raddesitek = int(str(vstup)[-2])
+	except:	
+		raddesitek = 0
+
+
+        if raddesitek == 1:
+        	desitka = "і"
+        elif raddesitek == 2:
+        	desitka = "к"
+        elif raddesitek == 3:
+                desitka = "л"
+        elif raddesitek == 4:
+                desitka = "м"
+        elif raddesitek == 5:
+                desitka = "н"
+        elif raddesitek == 6:
+                desitka = "ѯ"
+        elif raddesitek == 7:
+                desitka = "о"
+        elif raddesitek == 8:
+                desitka = "п"
+        elif raddesitek == 9:
+                desitka = "ч"
+
+	return desitka
+
+def stovka_na_cyr(vstup):
+
+	stovka = ""
+	try:
+		radstovek = int(str(vstup)[-3])
+	except:
+		radstovek = 0
+		
+
+	if radstovek == 1:
+		stovka = "р"
+	elif radstovek == 2:
+		stovka = "с"
+        elif radstovek == 3:
+                stovka = "т"
+        elif radstovek == 4:
+                stovka = "ѹ"
+        elif radstovek == 5:
+                stovka = "ф"
+        elif radstovek == 6:
+                stovka = "х"
+        elif radstovek == 7:
+                stovka = "ѱ"
+        elif radstovek == 8:
+                stovka = "ѡ"
+        elif radstovek == 9:
+                stovka = "ц"
+
+
+	return stovka
+
+
 '''
 -------------------------------- SAMOTNY PROGRAM -------------------------------------
 '''
@@ -335,8 +535,12 @@ except:
 
 vystup = cislo_na_slovo(user_input)
 print ""
-print "  Cyrillic numeral:    авгдезѕиѳклмнѯопчрстѹфццѡ"
-print "  Glagolitic numeral:  ⱑⱋⰼⰴ"
+
+if user_input < 10000:
+	print "  Cyrillic numeral:    "+str(prevodcisla(user_input,"cyrilice"))
+if user_input < 6000:
+	print "  Glagolitic numeral:  "
+
 print "  Old Church Slavonic: "+vystup
 print ""
 sys.exit(0)
