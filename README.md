@@ -33,14 +33,6 @@
 ###### Installation
 ```
 git clone https://github.com/MartinRybensky/ocsnum.git
-chmod a+x ocsnum/ocsnum.py
-ln -s ocsnum/ocsnum.py /usr/local/bin/ocsnum
-```
-
-or
-
-```
-git clone https://github.com/MartinRybensky/ocsnum.git
 cp ocsnum/ocsnum.py /usr/local/bin/ocsnum
 chmod a+x /usr/local/bin/ocsnum
 ```
