@@ -5,9 +5,10 @@
 # license Creative Commons BY-NC-SA 3.0
 # Created by Martin Rybensky
 
-__version__ = '0.01.01'
+__version__ = '1.0'
 __author__ = 'Martin Rybensky'
 
+import os
 import sys
 
 user_input = 0
@@ -604,29 +605,61 @@ def stovka_na_hlah(vstup):
 
 	return stovka
 
+
+
+napoveda = "\n  Old Church Slavonic Numerals’ Converter\n\n  ocsnum 1.0 (C) Martin Rybensky 2018, CC BY-NC-SA\n\n  Usage: ocsnum [parameters] [number]\n\n  -c, --cyrillic     show only cyrillic numeral as output\n  -g, --glagolitic   show only glagolitic numeral as output\n  -s, --slavonic     show only verbally expressed numeral in OCS\n  -h, --help	     show this help\n\n  Better, bidirectional OCS numeral converter can be found here:\n  http://prevodnik.gorazd.org:8081/old-church-slavonic-numerals-converter-kb\n\n"
+
+
 '''
 -------------------------------- SAMOTNY PROGRAM -------------------------------------
 '''
 
+try:
+	param1 = sys.argv[1]
+except:
+	print napoveda
+	sys.exit(0)
+
 
 try:
-    user_input = sys.argv[1]
-    user_input = int(user_input)
+	param2 = sys.argv[2]
 except:
-    print 'you must specify a number as a parameter'
-    sys.exit(0)
+	param2 = ""
 
 
-vystup = cislo_na_slovo(user_input)
-print ""
+if param2.isdigit():
+	user_input = int(param2)
 
-if user_input < 10000:
-	print "  Cyrillic numeral:    "+str(prevodcisla(user_input,"cyrilice"))
-if user_input < 6000:
-	print "  Glagolitic numeral:  "+str(prevodcisla(user_input,"hlaholice"))
 
-print "  Old Church Slavonic: "+vystup
-print ""
-sys.exit(0)
+if param1.isdigit():
+	user_input = int(param1)
+	print ""
+
+	if user_input < 10000:
+	        print "  Cyrillic numeral:    "+str(prevodcisla(user_input,"cyrilice"))
+	if user_input < 6000:
+        	print "  Glagolitic numeral:  "+str(prevodcisla(user_input,"hlaholice"))
+
+	print "  Old Church Slavonic: "+cislo_na_slovo(user_input)
+	print ""
+	sys.exit(0)
+
+
+elif param1 == "--cyrillic" or param1 =="-c":
+	print str(prevodcisla(user_input,"cyrilice"))
+elif param1 == "--glagolitic" or param1 == "-g":
+	print str(prevodcisla(user_input,"hlaholice"))
+elif param1 == "--slavic" or param1 == "-s":
+	print cislo_na_slovo(user_input)
+
+elif param1 == "--help" or param1 == "-h":
+	print napoveda
+	sys.exit(0)
+
+else:
+	print napoveda
+        sys.exit(1)
+
+
 
 
