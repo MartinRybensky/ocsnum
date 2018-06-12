@@ -8,7 +8,7 @@
 
   __-c, --cyrillic__     	show only cyrillic numeral as output     
   __-g, --glagolitic__   	show only glagolitic numeral as output   
-  __-s, --slavonic__     	show only verbally expressed numeral in OCS
+  __-s, --slavonic__     	show only verbally expressed numeral in OCS  
   __-h, --help__	     	show this help
 
 
