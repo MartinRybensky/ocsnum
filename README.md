@@ -6,12 +6,13 @@
 
   Usage: ocsnum [parameters] [number]
 
-  -c, --cyrillic     show only cyrillic numeral as output
-  -g, --glagolitic   show only glagolitic numeral as output
+  -c, --cyrillic     show only cyrillic numeral as output     
+  -g, --glagolitic   show only glagolitic numeral as output   
   -s, --slavonic     show only verbally expressed numeral in OCS
   -h, --help	     show this help
 
-  Better, bidirectional OCS numeral converter can be found here:
+
+  Better, bidirectional OCS numeral converter can be found here:\n
   http://prevodnik.gorazd.org:8081/old-church-slavonic-numerals-converter-kb
 
 
