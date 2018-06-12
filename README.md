@@ -6,10 +6,10 @@
 
   Usage: ocsnum [parameters] [number]
 
-  -c, --cyrillic     	show only cyrillic numeral as output     
-  -g, --glagolitic   	show only glagolitic numeral as output   
-  -s, --slavonic     	show only verbally expressed numeral in OCS
-  -h, --help	     	show this help
+  __-c, --cyrillic__     	show only cyrillic numeral as output     
+  __-g, --glagolitic__   	show only glagolitic numeral as output   
+  __-s, --slavonic__     	show only verbally expressed numeral in OCS
+  __-h, --help__	     	show this help
 
 
   Better, bidirectional OCS numeral converter can be found here:  
@@ -18,14 +18,14 @@
 
 ###### Sample output
 ```
-[user@pc]$ ocsnum 1241
+[user@pc]$ ocsnum 128
 
-  Cyrillic numeral:    ҂асма
-  Glagolitic numeral:  ⱍⱄⰽⰰ
-  Old Church Slavonic: тꙑсѫщи • дъвѣ сътѣ • четꙑре десѧте и ѥдинъ
+  Cyrillic numeral:    рки
+  Glagolitic numeral:  ⱃⰻⰷ
+  Old Church Slavonic: съто • дъва десѧти и осмь
 
-[user@pc]$ ocsnum -c 4319
-҂дтѳі
+[user@pc]$ ocsnum -c 318
+тиі
 
 ```
 
