@@ -646,9 +646,17 @@ if param1.isdigit():
 
 
 elif param1 == "--cyrillic" or param1 =="-c":
-	print str(prevodcisla(user_input,"cyrilice"))
+        if user_input < 10000:
+        	print str(prevodcisla(user_input,"cyrilice"))
+        else:
+                print 'unavailable'
+                sys.exit(1)
 elif param1 == "--glagolitic" or param1 == "-g":
-	print str(prevodcisla(user_input,"hlaholice"))
+        if user_input < 6000:
+        	print str(prevodcisla(user_input,"hlaholice"))
+        else:
+                print 'unavailable'
+                sys.exit(1)
 elif param1 == "--slavic" or param1 == "-s":
 	print cislo_na_slovo(user_input)
 
