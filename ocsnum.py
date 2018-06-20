@@ -664,6 +664,7 @@ elif param1 == "--help" or param1 == "-h":
 	print napoveda
 	sys.exit(0)
 
+
 else:
 	print napoveda
         sys.exit(1)
